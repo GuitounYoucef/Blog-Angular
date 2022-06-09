@@ -1,0 +1,44 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div class="dialog">
+
+    <div class="header">
+      <h1 mat-dialog-title>{{formCaption}}</h1>
+    </div>
+
+    <div mat-dialog-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="customFile">Main Image</label>
+      <input type="file" class="form-control" id="customFile" (change)="OnFileSelected($event)" />
+     </div> 
+
+     <div class="form-group">
+      <img [src]="imageLink" class="img-fluid" >
+     </div>    
+
+
+
+
+    <ckeditor [editor]="Editor" [config]="config" formControlName="statement">
+    </ckeditor>
+
+
+
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button class="bg-success text-white" style="width: 120px;">{{buttonCaption}}
+        <mat-icon>{{buttonicon}}</mat-icon>
+      </button>
+      <button mat-raised-button color="warn" (click)="closeForm()" style="width: 120px;">Close<mat-icon>cancel
+        </mat-icon></button>
+    </div>
+
+
+  </div>
+
+
+</form>

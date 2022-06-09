@@ -1,0 +1,26 @@
+<div class="bod">
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form class="login" [formGroup]="loginform" >
+          <div class="user-box">
+            <input type="text" required formControlName="username">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password"  required formControlName="password">
+
+            
+            <label>Password</label>
+          </div>
+          <a (click)="onSubmit()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
+        </form>
+      </div>
+
+    </div>

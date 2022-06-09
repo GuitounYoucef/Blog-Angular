@@ -1,0 +1,34 @@
+<div mat-dialog-actions>
+    <button (click)="openDialog()" mat-raised-button style="height: 45px;" class="bg-success text-white">
+        New Post
+        <mat-icon>add_circle</mat-icon>
+    </button>
+
+</div>
+
+
+<div class="card-group ">
+   
+    <div class="col-md-4  my-5 align-items-start  " *ngFor="let post of posts">
+     
+        <mdb-card>
+            <div class="view overlay waves-light" mdbWavesEffect>
+               <mdb-card-img [src]="post.imageLink"></mdb-card-img>
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <mdb-card-body>   
+                <mdb-card-title>
+                    <h4>{{post.title}}</h4>
+                </mdb-card-title>
+                <mdb-card-text >
+                    <div id="parg" [innerHTML]="post.statement" style="height: 105px; overflow: hidden;"></div>
+                </mdb-card-text>
+                <button mat-raised-button color="warn" class="bg-info" (click)="getPostById(post.id!)"  >Edit <mat-icon>edit</mat-icon></button>
+            </mdb-card-body>
+        </mdb-card>
+
+    </div>
+    
+</div>
