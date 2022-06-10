@@ -12,7 +12,7 @@ button{
 
 
 :host ::ng-deep .ck-editor__editable {
-    max-height: 600px;
+    max-height: 900px;
 }
 
 :host ::ng-deep .ck-editor__editable_inline {

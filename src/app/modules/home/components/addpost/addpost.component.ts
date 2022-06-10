@@ -53,6 +53,17 @@ export class AddpostComponent implements OnInit {
       id: [''],
     })    
 
+    if (this.editData) {
+      this.postForm.get('title')?.patchValue(this.editData.title);
+      this.postForm.get('imageLink')?.patchValue(this.editData.imageLink);
+      this.postForm.get('statement')?.patchValue(this.editData.statement);
+      this.postForm.get('user_id')?.patchValue(this.editData.user_id);
+      this.postForm.get('id')?.patchValue(this.editData.id);
+
+      this.imageLink=this.editData.imageLink;
+     }
+
+
 }
  public Editor =  customBuild;
 

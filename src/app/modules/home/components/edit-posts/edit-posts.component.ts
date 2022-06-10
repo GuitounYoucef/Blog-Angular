@@ -46,10 +46,12 @@ export class EditPostsComponent implements OnInit {
     });
   }
 
-  editUser(row:any){
+  editPost(Data:any){
     this.dialog.open(AddpostComponent, {
       width:'100%',
-      data:row
+      data:Data,
+      height: '900px',
+      autoFocus: false,
     }).afterClosed().subscribe(val =>{
       if(val==='update'){
         this.getPosts();
