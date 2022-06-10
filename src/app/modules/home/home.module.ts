@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -39,6 +40,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
     MDBBootstrapModule.forRoot()
 
 

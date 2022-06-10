@@ -5,3 +5,43 @@
   a:hover {
     color: rgb(255, 255, 255);
   }
+
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  
+.mat-menu-item {
+  width: 150px;
+  background-color: rgb(204, 200, 200);
+}
+    
+  /*   ul {
+      li {
+        list-style:none;
+      }
+    } */
+    button {
+      outline: none;
+      border: 0;
+      background: transparent;
+    }
+    .user {
+      font-size: 14px;
+    }
+    mat-toolbar {
+      background: #dfdede;
+    }
+    .user-image {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+  /*     &-icon {
+        height: 18px;
+        font-size: 16px;
+      } */
+    }
+    
