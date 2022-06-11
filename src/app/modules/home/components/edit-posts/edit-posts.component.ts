@@ -58,4 +58,15 @@ export class EditPostsComponent implements OnInit {
       }
     });
   }
+
+  deletePost(id:number){
+    console.log(id);
+    if(confirm("Are you sure you want to delete this post")) {
+      this.postservice.deletePost(id).subscribe(data=>{
+        this.getPosts();
+        alert("post deleted successfully ");
+      });
+    }  
+
+  }
 }

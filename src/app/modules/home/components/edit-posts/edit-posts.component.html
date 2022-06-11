@@ -26,7 +26,7 @@
                     <div id="parg" [innerHTML]="post.statement" style="height: 105px; overflow: hidden;"></div>
                 </mdb-card-text>
                 <button mat-raised-button color="warn" class="bg-info" (click)="editPost(post!)"  >Edit <mat-icon>edit</mat-icon></button>
-                <button mat-raised-button color="warn" class="bg-danger" (click)="getPostById(post.id!)"  >Delete <mat-icon>delete</mat-icon></button>
+                <button mat-raised-button color="warn" class="bg-danger" (click)="deletePost(post.id!)"  >Delete <mat-icon>delete</mat-icon></button>
             </mdb-card-body>
         </mdb-card>
 

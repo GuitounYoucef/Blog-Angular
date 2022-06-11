@@ -89,7 +89,7 @@ public html?:string;
     height:'5em',
   };
 
-savePost(){
+createPost(){
       
       this.postservice.createPost(this.postForm.value).subscribe(data =>
         {console.log(data);
@@ -98,9 +98,25 @@ savePost(){
         );
   }
 
+  updatePost(){
+      
+    this.postservice.UpdatePost(this.postForm.value).subscribe(data =>
+      {console.log(data);
+        this.dialogRef.close('update');
+         } 
+      );
+}
+
   onSubmit(){
-    this.savePost();
- 
+    if(this.postForm.valid)
+    {
+    if (!this.editData) {
+    this.createPost();
+    }
+    else{
+      this.updatePost();
+    }
+  }
   }
   
   OnFileSelected(event:any){
@@ -124,6 +140,7 @@ savePost(){
       }
     });
   }
+
   closeForm() {
     this.dialogRef.close('none');
   }
