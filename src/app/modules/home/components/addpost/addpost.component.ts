@@ -5,10 +5,14 @@ import {CKEditor5} from '@ckeditor/ckeditor5-angular';
 import { Post } from 'src/app/models/Post';
 import { PostsService } from 'src/app/services/posts.service';
 
-import * as customBuild from 'src/app/Ckeditor/ckeditor5-build-classic-simple-upload-adapter-image-resize/build/ckeditor';
+import * as customBuild from 'src/app/Ckeditor/ckeditor5-build-classic/build/ckeditor';
+import * as  ClassicEditor from 'src/app/Ckeditor/@haifahrul/ckeditor5-build-rich';
+import SimpleUploadAdapter from 'src/app/Ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+
 import { UrlImage } from 'src/app/models/UrlImage';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
  
 
 
@@ -38,8 +42,8 @@ export class AddpostComponent implements OnInit {
   constructor(private postservice:PostsService,
               private router:Router,
               private httpClient:HttpClient,
-              private dialogRef: MatDialogRef<AddpostComponent>,
-               @Inject(MAT_DIALOG_DATA) public editData: any,
+          //    private dialogRef: MatDialogRef<AddpostComponent>,
+           //    @Inject(MAT_DIALOG_DATA) public editData: any,
               private formBuilder: FormBuilder, ) { }
 
 
@@ -53,7 +57,7 @@ export class AddpostComponent implements OnInit {
       id: [''],
     })    
 
-    if (this.editData) {
+ /*   if (this.editData) {
       this.postForm.get('title')?.patchValue(this.editData.title);
       this.postForm.get('imageLink')?.patchValue(this.editData.imageLink);
       this.postForm.get('statement')?.patchValue(this.editData.statement);
@@ -61,39 +65,75 @@ export class AddpostComponent implements OnInit {
       this.postForm.get('id')?.patchValue(this.editData.id);
 
       this.imageLink=this.editData.imageLink;
-     }
+     }*/
 
 
 }
- public Editor =  customBuild;
+ public Editor =  ClassicEditor;
 
 BACKEND_URLIMG:string = 'http://localhost:8080/image/uploadFile';
 public html?:string;
  
  config: CKEditor5.Config = {
-      image: {
-      // image plugin config
-      toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
-      styles: [
-        'full',
-        'alignLeft',
-        'alignRight'
-      ]
-    },
-    simpleUpload: {
-      // The URL that the images are uploaded to.
-      uploadUrl: this.BACKEND_URLIMG,
-      // Headers sent along with the XMLHttpRequest to the upload server.
+  toolbar: [
+    'undo',
+    'redo',
+    '|',
+    'heading',
+    'fontFamily',
+    'fontSize',
+    '|',
+    'bold',
+    'italic',
+    'underline',
+    'fontColor',
+    'fontBackgroundColor',
+    'highlight',
+    '|',
+    'link',
+    'CKFinder',
+    'imageUpload',
+    'mediaEmbed',
+    '|',
+    'alignment',
+    'bulletedList',
+    'numberedList',
+    '|',
+    'indent',
+    'outdent',
+    '|',
+    'insertTable',
+    'blockQuote',
+    'specialCharacters'
+  ],
+  fontSize: {
+    options: [12,13,14,15,16,17,18,19,20,21,22,23,24,]
+},
+  language: 'id',
+  image: {
+    style: ['full', 'side', 'alignLeft', 'alignRight'],
+    toolbar: [ 'imageStyle:full', 'imageStyle:side', 'imageStyle:alignRight', 'imageStyle:alignLeft', '|', 'imageTextAlternative' ]
+  },
 
+
+
+  ckfinder: {
+    openerMethod: 'popup',
+    // The URL that the images are uploaded to.
+    uploadUrl: this.BACKEND_URLIMG,
+    options: {
+      resourceType: 'Images'
     },
-    height:'5em',
-  };
+    // Headers sent along with the XMLHttpRequest to the upload server.
+ 
+  }
+};
 
 createPost(){
       
       this.postservice.createPost(this.postForm.value).subscribe(data =>
         {console.log(data);
-          this.dialogRef.close('save');
+   //       this.dialogRef.close('save');
            } 
         );
   }
@@ -102,13 +142,13 @@ createPost(){
       
     this.postservice.UpdatePost(this.postForm.value).subscribe(data =>
       {console.log(data);
-        this.dialogRef.close('update');
+   //     this.dialogRef.close('update');
          } 
       );
 }
 
   onSubmit(){
-    if(this.postForm.valid)
+  /*  if(this.postForm.valid)
     {
     if (!this.editData) {
     this.createPost();
@@ -116,7 +156,7 @@ createPost(){
     else{
       this.updatePost();
     }
-  }
+  }*/
   }
   
   OnFileSelected(event:any){
@@ -142,7 +182,7 @@ createPost(){
   }
 
   closeForm() {
-    this.dialogRef.close('none');
+ //   this.dialogRef.close('none');
   }
 
 }

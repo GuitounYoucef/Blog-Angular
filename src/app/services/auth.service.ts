@@ -39,5 +39,6 @@ logout()
 {
   this.localStorage.clear('authenticationToken');
   this.localStorage.clear('username');
+  this.router.navigate(['home']);
 }
 }

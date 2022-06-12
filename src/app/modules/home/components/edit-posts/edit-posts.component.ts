@@ -35,8 +35,8 @@ export class EditPostsComponent implements OnInit {
   {
     this.dialog.open(AddpostComponent, {
       width:'100%',
-      height: '900px',
-      autoFocus: false,
+    //  height: '900px',
+     // autoFocus: false,
 
      
     }).afterClosed().subscribe(val =>{

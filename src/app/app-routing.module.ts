@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/components/home/home.component';
+import { AuthGuard } from './AuthGuard/auth.guard';
 
 
 
@@ -11,7 +12,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'home',
-   // canActivate: [AuthGuard],
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },  
