@@ -27,9 +27,13 @@ export class PostsService {
     return this.httpClient.put(`${this.baseURL}`,post);
   }    
 
-  deletePost(postID:number): Observable<any>{
-    return this.httpClient.delete(`${this.baseURL}/${postID}`);
+  deletePost(postID:number): Observable<number>{
+    return this.httpClient.delete<number>(`${this.baseURL}/${postID}`);
   } 
+
+  getImage(imageUrl: string): Observable<Blob> {
+    return this.httpClient.get(imageUrl, { responseType: 'blob' });
+  }
 
   
 }

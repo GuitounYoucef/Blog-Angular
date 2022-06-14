@@ -18,13 +18,13 @@
      </div> 
 
      <div class="form-group">
-      <img [src]="imageLink" class="img-fluid" >
+      <img #myImage class="img-fluid" >
      </div>    
 
 
 
      <div class="form-group">
-    <ckeditor [editor]="Editor" [config]="config" formControlName="statement">
+    <ckeditor [editor]="Editor" [config]="config" formControlName="statement" >
     </ckeditor>
      </div>
 

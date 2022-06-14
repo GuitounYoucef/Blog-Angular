@@ -11,24 +11,7 @@
    
     <div class="col-md-4  my-5 align-items-start  " *ngFor="let post of posts">
      
-        <mdb-card>
-            <div class="view overlay waves-light" mdbWavesEffect>
-               <mdb-card-img [src]="post.imageLink"></mdb-card-img>
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <mdb-card-body>   
-                <mdb-card-title>
-                    <h4>{{post.title}}</h4>
-                </mdb-card-title>
-                <mdb-card-text >
-                    <div id="parg" [innerHTML]="post.statement" style="height: 105px; overflow: hidden;"></div>
-                </mdb-card-text>
-                <button mat-raised-button color="warn" class="bg-info" (click)="editPost(post!)"  >Edit <mat-icon>edit</mat-icon></button>
-                <button mat-raised-button color="warn" class="bg-danger" (click)="deletePost(post.id!)"  >Delete <mat-icon>delete</mat-icon></button>
-            </mdb-card-body>
-        </mdb-card>
+           <app-editcard [card-data]=post (deleteAction)="deletePost($event)" (editAction)="editPost($event)"></app-editcard>
 
     </div>
     

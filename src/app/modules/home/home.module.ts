@@ -19,6 +19,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
+import { SecurePipe } from 'src/app/Pipes/SecureImage';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInterceptor } from 'src/app/Httpinterceptor/Httpinterceptor';
+import { EditcardComponent } from './components/editcard/editcard.component';
 
 
 
@@ -30,7 +34,9 @@ import {MatMenuModule} from '@angular/material/menu';
     BlogComponent,
     PostDetailComponent,
     PostCardComponent,
-    EditPostsComponent
+    EditPostsComponent,
+    SecurePipe,
+    EditcardComponent
   ],
   imports: [
     CommonModule,
@@ -41,11 +47,13 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+ 
     MDBBootstrapModule.forRoot()
 
 
 
     
-  ]
+  ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
 })
 export class HomeModule { }

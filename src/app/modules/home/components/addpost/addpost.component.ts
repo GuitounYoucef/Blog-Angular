@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {CKEditor5} from '@ckeditor/ckeditor5-angular';
 import { Post } from 'src/app/models/Post';
 import { PostsService } from 'src/app/services/posts.service';
 
-import * as customBuild from 'src/app/Ckeditor/ckeditor5-build-classic/build/ckeditor';
+
 import * as  ClassicEditor from 'src/app/Ckeditor/@haifahrul/ckeditor5-build-rich';
-import SimpleUploadAdapter from 'src/app/Ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+
 
 import { UrlImage } from 'src/app/models/UrlImage';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageService } from 'ngx-webstorage';
+
+
 
  
 
@@ -28,7 +31,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './addpost.component.html',
   styleUrls: ['./addpost.component.css']
 })
-export class AddpostComponent implements OnInit {
+export class AddpostComponent implements OnInit, AfterViewInit {
   selectedFile!: File;
   mainImageURL?:string;
   post!: Post;
@@ -37,18 +40,27 @@ export class AddpostComponent implements OnInit {
   formCaption = 'New Post'; 
   buttonCaption ='Save';
   buttonicon = 'save';
+  token?:string;
+  config!: CKEditor5.Config;
 
 
   constructor(private postservice:PostsService,
               private router:Router,
               private httpClient:HttpClient,
-          //    private dialogRef: MatDialogRef<AddpostComponent>,
-           //    @Inject(MAT_DIALOG_DATA) public editData: any,
-              private formBuilder: FormBuilder, ) { }
+              private dialogRef: MatDialogRef<AddpostComponent>,
+               @Inject(MAT_DIALOG_DATA) public editData: any,
+              private formBuilder: FormBuilder, 
+              private $localStorage: LocalStorageService) { }
 
+ngAfterViewInit(): void {
+  
+}              
 
   ngOnInit(): void {
+    this.token = this.$localStorage.retrieve("authenticationToken");
+    this.configuration();
 
+    
     this.postForm = this.formBuilder.group({
       title: ['', Validators.required],
       imageLink: ['', Validators.required],
@@ -57,7 +69,7 @@ export class AddpostComponent implements OnInit {
       id: [''],
     })    
 
- /*   if (this.editData) {
+    if (this.editData) {
       this.postForm.get('title')?.patchValue(this.editData.title);
       this.postForm.get('imageLink')?.patchValue(this.editData.imageLink);
       this.postForm.get('statement')?.patchValue(this.editData.statement);
@@ -65,7 +77,7 @@ export class AddpostComponent implements OnInit {
       this.postForm.get('id')?.patchValue(this.editData.id);
 
       this.imageLink=this.editData.imageLink;
-     }*/
+     }
 
 
 }
@@ -74,7 +86,9 @@ export class AddpostComponent implements OnInit {
 BACKEND_URLIMG:string = 'http://localhost:8080/image/uploadFile';
 public html?:string;
  
- config: CKEditor5.Config = {
+
+configuration(){
+ this.config = {
   toolbar: [
     'undo',
     'redo',
@@ -110,30 +124,36 @@ public html?:string;
     options: [12,13,14,15,16,17,18,19,20,21,22,23,24,]
 },
   language: 'id',
-  image: {
-    style: ['full', 'side', 'alignLeft', 'alignRight'],
-    toolbar: [ 'imageStyle:full', 'imageStyle:side', 'imageStyle:alignRight', 'imageStyle:alignLeft', '|', 'imageTextAlternative' ]
-  },
 
 
 
   ckfinder: {
-    openerMethod: 'popup',
+    openerMethod: 'modal',
     // The URL that the images are uploaded to.
     uploadUrl: this.BACKEND_URLIMG,
-    options: {
-      resourceType: 'Images'
-    },
+
+
     // Headers sent along with the XMLHttpRequest to the upload server.
+    headers:{
+      
+     //Authorization: `Bearer ${this.token}`
+
+    },
+
+    },
+
+
+
  
-  }
+  
 };
 
+}
 createPost(){
       
       this.postservice.createPost(this.postForm.value).subscribe(data =>
         {console.log(data);
-   //       this.dialogRef.close('save');
+          this.dialogRef.close('save');
            } 
         );
   }
@@ -142,13 +162,13 @@ createPost(){
       
     this.postservice.UpdatePost(this.postForm.value).subscribe(data =>
       {console.log(data);
-   //     this.dialogRef.close('update');
+        this.dialogRef.close('update');
          } 
       );
 }
 
   onSubmit(){
-  /*  if(this.postForm.valid)
+    if(this.postForm.valid)
     {
     if (!this.editData) {
     this.createPost();
@@ -156,7 +176,7 @@ createPost(){
     else{
       this.updatePost();
     }
-  }*/
+  }
   }
   
   OnFileSelected(event:any){
@@ -166,23 +186,35 @@ createPost(){
     this.uploadMainImage();
 
   }
+
+
+
+  @ViewChild('myImage') image!: ElementRef
   uploadMainImage(){
     const imageFile=new FormData;
     imageFile.append("upload",this.selectedFile,this.selectedFile.name);
+    
     this.httpClient.post<UrlImage>('http://localhost:8080/image/uploadFile',imageFile).
     subscribe((response) => {
-      if (response.uploded===true) {
-        this.postForm.get('imageLink')?.patchValue(response.url!);  
-         this.imageLink=response.url!;
-         console.log("image URL = "+this.post.imageLink); 
-      } else {
+      console.log("response = "+response.uploaded); 
+      if (response.uploaded===1) {
+        console.log("image URL = "+response.currentFolder?.url); 
+       this.postForm.get('imageLink')?.patchValue(response.currentFolder?.url);  
+       let url=response.currentFolder?.url;
+
+         this.postservice.getImage(url!).subscribe(response => this.image.nativeElement.src = window.URL.createObjectURL(response))
+
+
+         
+      }
+       else {
         console.log('Image not uploaded successfully');
       }
     });
   }
 
   closeForm() {
- //   this.dialogRef.close('none');
+    this.dialogRef.close('none');
   }
 
 }

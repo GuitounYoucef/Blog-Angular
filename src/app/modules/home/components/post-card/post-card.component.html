@@ -1,13 +1,34 @@
-
-    <div class = container>
-      <div class = card>
-        <div class = image>
-          <img href = "#" src ="https://i.pinimg.com/originals/a4/7b/a5/a47ba59b4a353e0928ef0551ca44f980.jpg">
-        </div>
-        <div class = content>
-          <h3>This is content</h3>
-          <p>DIn publishing and graphic design,           Lorem ipsum is a placeholder text               commonly used to demonstrate the visual         form of a document or a typeface without         relying on meaningful content.</p>
-        </div>
-      </div>    
+<mdb-card dark="true">
+    <!--Card image-->
+    <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img [src]="cardData.imageLink"></mdb-card-img>
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
     </div>
-
+    <!--/.Card image-->
+    <!--Card content-->
+    <mdb-card-body class="elegant-color white-text">
+        <!--Title-->
+        <mdb-card-title>
+            <h4>{{cardData.title}}</h4>
+        </mdb-card-title>
+        <hr class="hr-light">
+        <!--Text-->
+        <mdb-card-text class="white-text ">
+            <div id="parg" [innerHTML]="cardData.statement" style="height: 105px; overflow: hidden;"></div>
+        </mdb-card-text>
+        <a (click)="getPostById(cardData.id!)" class="white-text d-flex justify-content-end">
+            <h5 class="waves-light white-text" mdbWavesEffect>Read more
+                <span>
+                    <mdb-icon fas icon="chevron-right" class="pl-2 waves-light" mdbWavesEffect></mdb-icon>
+                </span>
+            </h5>
+        </a>
+    </mdb-card-body>
+    <!--/.Card content-->
+    <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+</mdb-card>
+<!--/.Card-->

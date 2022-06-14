@@ -21,6 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientInterceptor } from './Httpinterceptor/Httpinterceptor';
+import { SecurePipe } from './Pipes/SecureImage';
+
 
 
 
@@ -58,6 +60,7 @@ import { HttpClientInterceptor } from './Httpinterceptor/Httpinterceptor';
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
+  
 
 
 

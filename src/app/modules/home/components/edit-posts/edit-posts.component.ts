@@ -20,7 +20,7 @@ export class EditPostsComponent implements OnInit {
   ngOnInit(): void {
     this.getPosts();
   }
-  private getPosts(){
+  getPosts(){
     this.postservice.getPostsList().subscribe(data =>{
       this.posts = data;
     
@@ -35,8 +35,8 @@ export class EditPostsComponent implements OnInit {
   {
     this.dialog.open(AddpostComponent, {
       width:'100%',
-    //  height: '900px',
-     // autoFocus: false,
+      height: '900px',
+      autoFocus: false,
 
      
     }).afterClosed().subscribe(val =>{
@@ -60,9 +60,11 @@ export class EditPostsComponent implements OnInit {
   }
 
   deletePost(id:number){
-    console.log(id);
-    if(confirm("Are you sure you want to delete this post")) {
-      this.postservice.deletePost(id).subscribe(data=>{
+   console.log(id);
+   if(confirm("Are you sure you want to delete this post")) 
+    {
+        this.postservice.deletePost(id).subscribe(data=>{
+        console.log(data);
         this.getPosts();
         alert("post deleted successfully ");
       });

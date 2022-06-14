@@ -1,0 +1,18 @@
+<mdb-card>
+    <div class="view overlay waves-light" mdbWavesEffect>
+       <mdb-card-img [src]="cardData.imageLink"></mdb-card-img>
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+    <mdb-card-body>   
+        <mdb-card-title>
+            <h4>{{cardData.title}}</h4>
+        </mdb-card-title>
+        <mdb-card-text >
+            <div id="parg" [innerHTML]="cardData.statement" style="height: 105px; overflow: hidden;"></div>
+        </mdb-card-text>
+        <button mat-raised-button color="warn" class="bg-info" (click)="editPost()"  >Edit <mat-icon>edit</mat-icon></button>
+        <button mat-raised-button color="warn" class="bg-danger" (click)="deletePost(cardData.id!)"  >Delete <mat-icon>delete</mat-icon></button>
+    </mdb-card-body>
+</mdb-card>

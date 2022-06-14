@@ -1,6 +1,12 @@
 export class UrlImage 
-{
-   uploded?:boolean;
-   url?:string;
-   name?:string;
- }
+{ 
+    resourceType?:string;
+    currentFolder?:CurrentFolder;
+    fileName?:string;
+    uploaded?:number;
+}
+ class CurrentFolder {
+    path?:string;
+    url?:string;
+    acl?:number;
+}
