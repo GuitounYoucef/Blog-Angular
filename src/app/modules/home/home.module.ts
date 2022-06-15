@@ -19,10 +19,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
-import { SecurePipe } from 'src/app/Pipes/SecureImage';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInterceptor } from 'src/app/Httpinterceptor/Httpinterceptor';
 import { EditcardComponent } from './components/editcard/editcard.component';
+import { SearchPostPipe } from 'src/app/Pipes/search-post.pipe';
 
 
 
@@ -35,8 +36,11 @@ import { EditcardComponent } from './components/editcard/editcard.component';
     PostDetailComponent,
     PostCardComponent,
     EditPostsComponent,
-    SecurePipe,
-    EditcardComponent
+    EditcardComponent,
+    SearchPostPipe
+    
+  
+   
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,7 @@ import { EditcardComponent } from './components/editcard/editcard.component';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    FormsModule,
  
     MDBBootstrapModule.forRoot()
 

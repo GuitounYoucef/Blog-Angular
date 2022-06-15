@@ -131,13 +131,13 @@ configuration(){
     openerMethod: 'modal',
     // The URL that the images are uploaded to.
     uploadUrl: this.BACKEND_URLIMG,
-
+    
 
     // Headers sent along with the XMLHttpRequest to the upload server.
     headers:{
       
-     //Authorization: `Bearer ${this.token}`
-
+     Authorization: `Bearer ${this.token}`,
+     method : "post",
     },
 
     },

@@ -21,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientInterceptor } from './Httpinterceptor/Httpinterceptor';
-import { SecurePipe } from './Pipes/SecureImage';
+
 
 
 
@@ -38,13 +38,16 @@ import { SecurePipe } from './Pipes/SecureImage';
     AppComponent,
     LoginComponent,
 
+
   ],
   imports: [
     CommonModule,
     BrowserModule,
     MatIconModule,
+    FormsModule,
     AppRoutingModule,
     CKEditorModule,
+
     
     BrowserAnimationsModule,
     NgbModule,
