@@ -13,6 +13,7 @@ import { SearchPostPipe } from 'src/app/Pipes/search-post.pipe';
 })
 export class BlogComponent implements OnInit {
   filter:string='';
+  p: number = 1;
 
   posts: Post[] = [];
   constructor(private postservice:PostsService,

@@ -24,6 +24,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInterceptor } from 'src/app/Httpinterceptor/Httpinterceptor';
 import { EditcardComponent } from './components/editcard/editcard.component';
 import { SearchPostPipe } from 'src/app/Pipes/search-post.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PasswordUpdateComponent } from './components/password-update/password-update.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -37,7 +40,9 @@ import { SearchPostPipe } from 'src/app/Pipes/search-post.pipe';
     PostCardComponent,
     EditPostsComponent,
     EditcardComponent,
-    SearchPostPipe
+    SearchPostPipe,
+    PasswordUpdateComponent,
+    
     
   
    
@@ -52,6 +57,8 @@ import { SearchPostPipe } from 'src/app/Pipes/search-post.pipe';
     MatButtonModule,
     MatMenuModule,
     FormsModule,
+    NgxPaginationModule,
+    MatDividerModule,
  
     MDBBootstrapModule.forRoot()
 

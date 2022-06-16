@@ -1,3 +1,4 @@
-#parg img{
-    display:none;
-}
+
+.my-pagination .ngx-pagination .current {
+    background: rgb(56, 55, 55);
+  }

@@ -36,9 +36,14 @@
           <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
         </button>
         <mat-menu #menu="matMenu" >
+          <button mat-menu-item (click)="ChangePassword()" >
+            <mat-icon>lock</mat-icon>
+            <span>Change password</span>
+          </button>
+          <mat-divider></mat-divider>
           <button mat-menu-item (click)="logout()" >
             <mat-icon>logout</mat-icon>
-            <span>logout</span>
+            <span>Logout</span>
           </button>
   
         </mat-menu>
