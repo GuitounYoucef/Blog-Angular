@@ -63,19 +63,23 @@ ngAfterViewInit(): void {
     
     this.postForm = this.formBuilder.group({
       title: ['', Validators.required],
+      cardContent: ['', Validators.required],
       imageLink: ['', Validators.required],
       statement: ['', Validators.required],
       user_id: [''],
       id: [''],
+      ceationDate: [''],
     })    
 
-    if (this.editData) {
+    if (this.editData) 
+    {
       this.postForm.get('title')?.patchValue(this.editData.title);
+      this.postForm.get('cardContent')?.patchValue(this.editData.cardContent);
       this.postForm.get('imageLink')?.patchValue(this.editData.imageLink);
       this.postForm.get('statement')?.patchValue(this.editData.statement);
       this.postForm.get('user_id')?.patchValue(this.editData.user_id);
       this.postForm.get('id')?.patchValue(this.editData.id);
-
+      this.postForm.get('ceationDate')?.patchValue(this.editData.ceationDate);
       this.imageLink=this.editData.imageLink;
      }
 

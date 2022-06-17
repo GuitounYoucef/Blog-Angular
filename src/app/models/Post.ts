@@ -4,6 +4,8 @@ export class Post {
     title?:string;
     imageLink!:string;
     user_id?:number;
+    cardContent!:string;
+    ceationDate!:Date;
     Post(){
         this.imageLink=""; 
     }
