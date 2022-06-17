@@ -1,7 +1,7 @@
 export class PasswordUpdate
  {
     id?:number;
-	userName?:string;     
-    oledPassword?:string;
-    newPassword?:string;    
+	userName:string='';     
+    oldPassword:string='';
+    newPassword:string='';    
 }

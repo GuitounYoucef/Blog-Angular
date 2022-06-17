@@ -5,6 +5,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { map, Observable } from 'rxjs';
 import { AuthenticationResponse } from '../models/AuthenticationResponse';
 import { PasswordUpdate } from '../models/passwordUpdate';
+import { PasswordUpdateResponse } from '../models/passwordUpdateResponse';
 import { Userpayload } from '../models/Userpayload';
 
 @Injectable({
@@ -32,7 +33,7 @@ isAuthenticated():boolean{
   return this.localStorage.retrieve('username')!=null;
 }
 
-getUserName(){
+getUserName():string{
   return this.localStorage.retrieve('username');
 }
 
@@ -42,14 +43,9 @@ logout()
   this.localStorage.clear('username');
   this.router.navigate(['home']);
 }
-uapdatePassword(passwordUpdate:PasswordUpdate):Observable<boolean>
+uapdatePassword(passwordUpdate:PasswordUpdate):Observable<PasswordUpdateResponse>
 {
-  return this.httpClient.put<PasswordUpdate>(`${this.BlogbaseURL+"/users/updatepassword"}`,passwordUpdate).
-       pipe(map(data =>{
-         if(data===true)
-         return true;
-         else return false;
-       }));
+  return this.httpClient.put<PasswordUpdateResponse>(`${this.BlogbaseURL+"/users/updatepassword"}`,passwordUpdate);
         
 }
 }
